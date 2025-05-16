@@ -23,7 +23,6 @@ export default function Home() {
       if (data.success) {
         setQrUrl(data.qr_data_url);
 
-        // Convert ke blob untuk download
         const blobRes = await fetch(data.qr_data_url);
         const blob = await blobRes.blob();
         const objectUrl = URL.createObjectURL(blob);
@@ -108,7 +107,7 @@ export default function Home() {
                   padding: "0.6rem 1rem",
                   borderRadius: "12px"
                 }}
-                download="qr-code.png"
+                download="qr-code-H56.png"
               >
                 <i className="fa-solid fa-download me-2"></i> Download PNG
               </a>
@@ -118,4 +117,4 @@ export default function Home() {
       </main>
     </>
   );
-  }
+    }
