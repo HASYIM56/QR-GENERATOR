@@ -54,7 +54,15 @@ export default function Home() {
       <main
         className="d-flex justify-content-center align-items-center min-vh-100 p-3"
         style={{
-          background: "linear-gradient(135deg, #0d1117, #1f1f1f)",
+          backgroundColor: "#0d1117",
+          opacity: 0.9,
+          backgroundImage: `
+            radial-gradient(circle, transparent 20%, #0d1117 20%, #0d1117 80%, transparent 80%, transparent),
+            radial-gradient(circle, transparent 20%, #0d1117 20%, #0d1117 80%, transparent 80%, transparent) 25px 25px,
+            linear-gradient(#2d3748 2px, transparent 2px) 0 -1px,
+            linear-gradient(90deg, #2d3748 2px, #0d1117 2px) -1px 0
+          `,
+          backgroundSize: "50px 50px, 50px 50px, 25px 25px, 25px 25px",
           color: "#f8f9fa",
         }}
       >
@@ -62,50 +70,52 @@ export default function Home() {
           className="w-100"
           style={{
             maxWidth: "480px",
-            background: "rgba(255, 255, 255, 0.05)",
-            backdropFilter: "blur(16px)",
+            background: "rgba(255, 255, 255, 0.08)",
+            backdropFilter: "blur(20px)",
             border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: "20px",
-            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.5)",
-            padding: "2rem",
+            borderRadius: "24px",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+            padding: "2.5rem",
           }}
         >
           <div className="text-center mb-4">
-            <h1 className="fw-bold mb-1" style={{ fontSize: "1.8rem" }}>
+            <h1 className="fw-bold mb-2" style={{ fontSize: "2rem" }}>
               <i className="fa-solid fa-qrcode me-2" /> QR Generator Klasik
             </h1>
-            <p className="text-secondary mb-0" style={{ fontSize: "0.9rem" }}>
+            <p className="text-secondary mb-0" style={{ fontSize: "1rem" }}>
               Buat kode QR untuk link, teks, dan lainnya secara instan
             </p>
           </div>
 
           <input
             type="text"
-            className="form-control mb-3"
+            className="form-control mb-4"
             placeholder="Masukkan URL atau teks..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.08)",
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              backgroundColor: "rgba(255, 255, 255, 0.05)",
+              border: "2px solid rgba(255, 255, 255, 0.1)",
               color: "#fff",
-              padding: "1rem",
-              borderRadius: "14px",
+              padding: "1.2rem",
+              borderRadius: "16px",
               fontSize: "1rem",
+              transition: "all 0.3s ease",
             }}
           />
 
           <button
             onClick={generateQR}
-            className="btn w-100 mb-4"
+            className="btn w-100 mb-4 hover-effect"
             style={{
-              background: "#ffffff",
-              color: "#000",
-              padding: "0.8rem",
-              borderRadius: "14px",
+              background: "linear-gradient(135deg, #4f46e5, #7c3aed)",
+              color: "#fff",
+              padding: "1rem",
+              borderRadius: "16px",
               fontWeight: "600",
-              fontSize: "1rem",
+              fontSize: "1.1rem",
               transition: "all 0.3s ease",
+              border: "none",
             }}
           >
             <i className="fa-solid fa-magic me-2" /> Generate QR
@@ -122,28 +132,33 @@ export default function Home() {
               }}
             >
               <h5 className="mb-3 fw-semibold">Hasil QR:</h5>
-              <img
-                src={qrUrl}
-                alt="QR Code"
-                className="img-fluid"
-                style={{
-                  border: "5px solid #ffffff",
-                  borderRadius: "12px",
-                  boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)",
-                  marginBottom: "1rem",
-                  maxWidth: "100%",
-                }}
-              />
+              <div className="qr-container p-4" style={{
+                background: "rgba(255, 255, 255, 0.95)",
+                borderRadius: "20px",
+                marginBottom: "1.5rem"
+              }}>
+                <img
+                  src={qrUrl}
+                  alt="QR Code"
+                  className="img-fluid"
+                  style={{
+                    borderRadius: "12px",
+                    maxWidth: "100%",
+                  }}
+                />
+              </div>
               <a
                 href={downloadUrl}
                 className="btn"
                 style={{
-                  background: "#28a745",
+                  background: "linear-gradient(135deg, #059669, #10b981)",
                   color: "white",
                   fontWeight: "600",
-                  padding: "0.6rem 1rem",
-                  borderRadius: "12px",
-                  fontSize: "0.95rem",
+                  padding: "0.8rem 1.5rem",
+                  borderRadius: "14px",
+                  fontSize: "1rem",
+                  border: "none",
+                  boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)",
                 }}
                 download="qr-code.png"
               >
@@ -166,9 +181,20 @@ export default function Home() {
           }
         }
 
+        .hover-effect:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        input:focus {
+          border-color: rgba(79, 70, 229, 0.5) !important;
+          box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
+          outline: none;
+        }
+
         @media (max-width: 576px) {
           h1 {
-            font-size: 1.5rem !important;
+            font-size: 1.6rem !important;
           }
 
           input,
@@ -179,4 +205,4 @@ export default function Home() {
       `}</style>
     </>
   );
-        }
+    }
