@@ -24,7 +24,6 @@ export default function Home() {
 
       if (data.success) {
         setQrUrl(data.qr_data_url);
-
         const blobRes = await fetch(data.qr_data_url);
         const blob = await blobRes.blob();
         const objectUrl = URL.createObjectURL(blob);
@@ -58,32 +57,44 @@ export default function Home() {
       <main
         className="d-flex justify-content-center align-items-center min-vh-100 p-3"
         style={{
-          backgroundColor: "#0d1117",
-          opacity: 0.9,
+          background: "#ffffff",
           backgroundImage: `
-            radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.1) 0%, transparent 50%)
+            radial-gradient(circle at 0% 0%, rgba(135, 206, 235, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(135, 206, 235, 0.1) 0%, transparent 50%)
           `,
-          color: "#f8f9fa",
         }}
       >
         <div
           className="w-100 animate-fade-in"
           style={{
             maxWidth: "480px",
-            background: "rgba(255, 255, 255, 0.1)",
-            backdropFilter: "blur(25px)",
-            border: "1px solid rgba(255, 255, 255, 0.15)",
-            borderRadius: "28px",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(79, 70, 229, 0.1)",
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(135, 206, 235, 0.2)",
+            borderRadius: "24px",
+            boxShadow: "0 8px 32px rgba(135, 206, 235, 0.15)",
             padding: "2.5rem",
           }}
         >
           <div className="text-center mb-4">
-            <h1 className="fw-bold mb-2" style={{ fontSize: "2rem" }}>
-              <i className="fa-solid fa-qrcode me-2" /> QR Generator Klasik
+            <h1 
+              className="fw-bold mb-2" 
+              style={{ 
+                fontSize: "2rem",
+                color: "#2c3e50",
+                letterSpacing: "-0.5px"
+              }}
+            >
+              <i className="fa-solid fa-qrcode me-2" style={{ color: "#87CEEB" }} />
+              QR Generator Klasik
             </h1>
-            <p className="text-secondary mb-0" style={{ fontSize: "1rem" }}>
+            <p 
+              className="mb-0" 
+              style={{ 
+                fontSize: "1rem",
+                color: "#6c7a89"
+              }}
+            >
               Buat kode QR untuk link, teks, dan lainnya secara instan
             </p>
           </div>
@@ -96,13 +107,13 @@ export default function Home() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                border: "2px solid rgba(255, 255, 255, 0.2)",
-                color: "#fff",
+                backgroundColor: "#ffffff",
+                border: "2px solid rgba(135, 206, 235, 0.3)",
+                color: "#2c3e50",
                 padding: "1.2rem",
                 borderRadius: "16px",
                 fontSize: "1rem",
-                transition: "all 0.3s ease",
+                boxShadow: "0 2px 8px rgba(135, 206, 235, 0.1)",
               }}
             />
           </div>
@@ -112,13 +123,12 @@ export default function Home() {
             className={`btn w-100 mb-4 hover-effect ${isLoading ? 'loading' : ''}`}
             disabled={isLoading}
             style={{
-              background: "linear-gradient(135deg, #4f46e5, #7c3aed)",
-              color: "#fff",
+              background: "linear-gradient(135deg, #87CEEB, #00BFFF)",
+              color: "#ffffff",
               padding: "1rem",
               borderRadius: "16px",
               fontWeight: "600",
               fontSize: "1.1rem",
-              transition: "all 0.3s ease",
               border: "none",
               position: "relative",
               overflow: "hidden",
@@ -145,14 +155,20 @@ export default function Home() {
                 animationDelay: "0.2s",
               }}
             >
-              <h5 className="mb-3 fw-semibold">Hasil QR:</h5>
+              <h5 
+                className="mb-3 fw-semibold"
+                style={{ color: "#2c3e50" }}
+              >
+                Hasil QR:
+              </h5>
               <div 
                 className="qr-container p-4" 
                 style={{
-                  background: "rgba(255, 255, 255, 0.95)",
+                  background: "#ffffff",
                   borderRadius: "20px",
                   marginBottom: "1.5rem",
-                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 4px 15px rgba(135, 206, 235, 0.15)",
+                  border: "1px solid rgba(135, 206, 235, 0.2)",
                 }}
               >
                 <img
@@ -168,17 +184,16 @@ export default function Home() {
               </div>
               <a
                 href={downloadUrl}
-                className="btn hover-effect-green"
+                className="btn hover-effect-download"
                 style={{
-                  background: "linear-gradient(135deg, #059669, #10b981)",
+                  background: "linear-gradient(135deg, #87CEEB, #00BFFF)",
                   color: "white",
                   fontWeight: "600",
                   padding: "0.8rem 1.5rem",
                   borderRadius: "14px",
                   fontSize: "1rem",
                   border: "none",
-                  boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)",
-                  transition: "all 0.3s ease",
+                  boxShadow: "0 4px 15px rgba(135, 206, 235, 0.3)",
                 }}
                 download="qr-code.png"
               >
@@ -212,26 +227,29 @@ export default function Home() {
 
         .hover-effect:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+          box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+          background: linear-gradient(135deg, #00BFFF, #87CEEB);
         }
 
-        .hover-effect-green:hover {
+        .hover-effect-download:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+          box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+          background: linear-gradient(135deg, #00BFFF, #87CEEB) !important;
         }
 
-        .hover-effect-green:active {
+        .hover-effect:active,
+        .hover-effect-download:active {
           transform: scale(0.98);
         }
 
         input::placeholder {
-          color: rgba(255, 255, 255, 0.7) !important;
+          color: #a0aec0 !important;
           font-weight: 500;
         }
 
         input:focus {
-          border-color: rgba(79, 70, 229, 0.5) !important;
-          box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
+          border-color: rgba(135, 206, 235, 0.5) !important;
+          box-shadow: 0 0 0 4px rgba(135, 206, 235, 0.1) !important;
           outline: none;
           transform: scale(1.01);
         }
